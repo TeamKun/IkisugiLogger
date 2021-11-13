@@ -4,8 +4,8 @@ import net.kunmc.lab.ikisugilogger.IkisugiLogger;
 
 public class Main {
     public static void main(String[] args) {
-        IkisugiLogger logger = new IkisugiLogger("IKISUGI TEST");
-        logger.setColorType(IkisugiLogger.ColorType.RAINBOW);
+        IkisugiLogger logger = new IkisugiLogger("IKISUGI\nHAPPY BIRTHDAY");
+        logger.setColorType(IkisugiLogger.ColorType.NONE);
         System.out.println(logger.create());
     }
 }

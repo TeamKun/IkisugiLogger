@@ -30,31 +30,32 @@ public class IkisugiLogger {
     }
 
     public String create() {
-      //  String[] texts = text.split("\n");
+        String[] texts = text.split("\n");
 
-        String[] aas = AAs.getDecodeAAs(text);
-        StringBuilder sb = new StringBuilder();
-
-        int max = 0;
-        int ct = 0;
-
+        int maxLine = 0;
         int maxColin = 0;
 
-        do {
-            int colinCont = 0;
-            for (String aa : aas) {
-                String[] let = aa.split("\n");
-                max = Math.max(max, let.length);
-                String line = let.length > ct ? let[ct] : Util.stringRepeat(" ", let[let.length - 1].length());
-                colinCont += line.length();
-                colinCont += blankCount;
-            }
-            maxColin = Math.max(maxColin, colinCont);
-            ct++;
-        } while (ct < max);
+        int ct = 0;
 
-        ct = 0;
+        for (String txt : texts) {
+            String[] aas = AAs.getDecodeAAs(txt);
+            do {
+                int colinCont = 0;
+                for (String aa : aas) {
+                    String[] let = aa.split("\n");
+                    maxLine = Math.max(maxLine, let.length);
+                    String line = let.length > ct ? let[ct] : Util.stringRepeat(" ", let[let.length - 1].length());
+                    colinCont += line.length();
+                    colinCont += blankCount;
+                }
+                maxColin = Math.max(maxColin, colinCont);
+                ct++;
+            } while (ct < maxLine);
+            ct = 0;
+        }
 
+        StringBuilder sb = new StringBuilder();
+        /*
         do {
             int colinCont = 0;
             for (String aa : aas) {
@@ -69,12 +70,12 @@ public class IkisugiLogger {
             sb.append("\n");
             ct++;
         } while (ct < max);
-
+*/
 
         if (colorType != ColorType.NONE)
             sb.append("\u001b[0m");
 
-        return sb.toString();
+        return "sb.toString()";
     }
 
     public void setColorType(ColorType colorType) {
