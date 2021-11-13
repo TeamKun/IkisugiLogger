@@ -1,5 +1,7 @@
 package net.kunmc.lab.ikisugilogger;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class IkisugiLogger {
@@ -31,37 +33,69 @@ public class IkisugiLogger {
 
     public String create() {
         String[] texts = text.split("\n");
-
+        String[][] aas = new String[texts.length][];
+        List<Integer> colins = new ArrayList<>();
+        int[] lengths = new int[texts.length];
         int maxLine = 0;
         int maxColin = 0;
 
         int ct = 0;
+        int act = 0;
 
-        for (String txt : texts) {
-            String[] aas = AAs.getDecodeAAs(txt);
+        for (int i = 0; i < texts.length; i++) {
+            aas[i] = AAs.getDecodeAAs(texts[i]);
+            int max = 0;
+            if (i != 0)
+                maxLine++;
             do {
                 int colinCont = 0;
-                for (String aa : aas) {
+                for (int j = 0; j < aas[i].length; j++) {
+                    String aa = aas[i][j];
                     String[] let = aa.split("\n");
-                    maxLine = Math.max(maxLine, let.length);
+                    max = Math.max(max, let.length);
                     String line = let.length > ct ? let[ct] : Util.stringRepeat(" ", let[let.length - 1].length());
                     colinCont += line.length();
                     colinCont += blankCount;
                 }
                 maxColin = Math.max(maxColin, colinCont);
+                colins.add(colinCont);
                 ct++;
-            } while (ct < maxLine);
+            } while (ct < max);
+            maxLine += max;
+            lengths[i] = max;
             ct = 0;
+            colins.add(0);
         }
 
+
         StringBuilder sb = new StringBuilder();
-        /*
-        do {
+        for (int i = 0; i < maxLine; i++) {
+            int txNum = 0;
+            int ltcont = 0;
+            for (int j = 0; j < lengths.length; j++) {
+                if (i >= ltcont && i < ltcont + lengths[j] + (j != lengths.length - 1 ? 1 : 0)) {
+                    if (ltcont == i) {
+                        ct = 0;
+                    }
+                    txNum = j;
+                    break;
+                }
+                ltcont += lengths[j] + 1;
+            }
+
+            String[] aalt = aas[txNum];
             int colinCont = 0;
-            for (String aa : aas) {
+
+            if (center) {
+                int ama = (maxColin - colins.get(i)) / 2;
+                sb.append(Util.stringRepeat(" ", ama));
+                colinCont += ama;
+            }
+
+            for (String aa : aalt) {
                 String[] let = aa.split("\n");
                 String line = let.length > ct ? let[ct] : Util.stringRepeat(" ", let[let.length - 1].length());
-                sb.append(colorType.getColorable().colorLine(line, ct, colinCont, max, maxColin));
+                sb.append(colorType.getColorable().colorLine(line, act, colinCont, maxLine, maxColin));
                 colinCont += line.length();
                 sb.append(Util.stringRepeat(" ", blankCount));
                 colinCont += blankCount;
@@ -69,13 +103,13 @@ public class IkisugiLogger {
 
             sb.append("\n");
             ct++;
-        } while (ct < max);
-*/
+            act++;
+        }
 
         if (colorType != ColorType.NONE)
             sb.append("\u001b[0m");
 
-        return "sb.toString()";
+        return sb.toString();
     }
 
     public void setColorType(ColorType colorType) {
