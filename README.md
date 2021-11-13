@@ -39,7 +39,7 @@ Maven
     </dependencies>
 ```
 
-# 利用方法
+# 利用例
 ```java
 IkisugiLogger logger = new IkisugiLogger("ikisugi test");
 logger.setColorType(IkisugiLogger.ColorType.RAINBOW);
