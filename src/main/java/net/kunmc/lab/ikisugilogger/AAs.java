@@ -30,8 +30,37 @@ public class AAs {
     private static final String X = "ICMjICAjIwogIyMgICMjCiAgIyMjIyAKICAgIyMgIAogICMjIyMgCiAjIyAgIyMKICMjICAjIwo=";
     private static final String Y = "ICMjICAjIwogIyMgICMjCiAjIyAgIyMKICAjIyMjIAogICAjIyAgCiAgICMjICAKICAjIyMjIAo=";
     private static final String Z = "ICMjIyMjIyMKICMgICAjIyAKICAgICMjICAKICAgIyMgICAKICAjIyAgICAKICMjICAgICMKICMjIyMjIyMK";
-    private static final String SPACE = "ICAgICAgICAKICAgICAgICAKICAgICAgICAKICAgICAgICAKICAgICAgICAKICAgICAgICAKICAgICAgICAK";
 
+    private static final String SPACE = "ICAgICAgICAKICAgICAgICAKICAgICAgICAKICAgICAgICAKICAgICAgICAKICAgICAgICAKICAgICAgICAK";
+    private static final String EXCLAMATION = "ICAgIyMgCiAgIyMjIwogICMjIyMKICAgIyMgCiAgICMjIAogICAgICAKICAgIyMgCg==";
+    private static final String QUESTION = "ICMjIyMgCiMjICAjIwogICAgIyMKICAgIyMgCiAgIyMgIAogICAgICAKICAjIyAgCg==";
+    private static final String HYPHEN = "ICAgICAgIAogICAgICAgCiAjIyMjIyMK";
+    private static final String COMMA = "ICAgICAKICAgICAKICAgICAKICAgICAKICAgIyMKICAgIyMKICAjIyAK";
+    private static final String FULL_STOP = "ICAgICAKICAgICAKICAgICAKICAgICAKICAgIyMKICAgIyMK";
+    private static final String QUOTATION = "ICMjICAjIwogIyMgICMjCiAjICAgIyAK";
+    private static final String NUMBER_SIGN = "ICMjICMjIAogIyMgIyMgCiMjIyMjIyMKICMjICMjIAojIyMjIyMjCiAjIyAjIyAKICMjICMjIAo=";
+    private static final String PERCENT = "ICMjICAgIwogIyMgICMjCiAgICAjIyAKICAgIyMgIAogICMjICAgCiAjIyAgIyMKICMgICAjIwo=";
+    private static final String PLUS = "ICAgIyMgIAogICAjIyAgCiAjIyMjIyMKICAgIyMgIAogICAjIyAgCg==";
+    private static final String SOLIDUS = "ICAgICAgIyMKICAgICAjIyAKICAgICMjICAKICAgIyMgICAKICAjIyAgICAKICMjICAgICAK";
+    private static final String AMPERSAND = "ICMjIyMgIAojIyAgIyMgCiAjIyMjICAKICMjIyAgIAojIyAgIyMjCiMjICAjIyAKICMjIyMjIwo=";
+    private static final String APOSTROPHE = "ICAgIyMKICAgIyMKICAjIyAK";
+    private static final String COLON = "ICAgICAKICAgIyMKICAgICAKICAgICAKICAgIyMK";
+    private static final String SEMICOLON = "ICAjIwogICAgCiAgICAKICAjIwogICMjCiAjIyAK";
+    private static final String EQUALS = "ICAgICAgIAogIyMjIyMjCiAgICAgICAKICMjIyMjIwo=";
+    private static final String LOW_LINE = "ICAgICAgICAKICAgICAgICAKICAgICAgICAKICAgICAgICAKICAgICAgICAKICAgICAgICAKIyMjIyMjIyMK";
+    private static final String CIRCUMFLEX = "ICAgIyAgIAogICMjIyAgCiAjIyAjIyAKIyMgICAjIwo=";
+
+    private static final String _1 = "ICAgIyMgIAogICMjIyAgCiAgICMjICAKICAgIyMgIAogICAjIyAgCiAgICMjICAKICMjIyMjIwo=";
+    private static final String _2 = "ICAjIyMjIAogIyMgICMjCiAgICAgIyMKICAgIyMjIAogICMjICAgCiAjIyAgIyMKICMjIyMjIwo=";
+    private static final String _3 = "ICAjIyMjIAogIyMgICMjCiAgICAgIyMKICAgIyMjIAogICAgICMjCiAjIyAgIyMKICAjIyMjIAo=";
+    private static final String _4 = "ICAgICMjIyAKICAgIyMjIyAKICAjIyAjIyAKICMjICAjIyAKICMjIyMjIyMKICAgICAjIyAKICAgICAjIyAK";
+    private static final String _5 = "ICMjIyMjIwogIyMgICAgCiAjIyMjIyAKICAgICAjIwogICAgICMjCiAjIyAgIyMKICAjIyMjIAo=";
+    private static final String _6 = "ICAgIyMjIAogICMjICAgCiAjIyAgICAKICMjIyMjIAogIyMgICMjCiAjIyAgIyMKICAjIyMjIAo=";
+    private static final String _7 = "ICMjIyMjIwogIyMgICMjCiAgICAgIyMKICAgICMjIAogICAjIyAgCiAgICMjICAKICAgIyMgIAo=";
+    private static final String _8 = "ICAjIyMjIAogIyMgICMjCiAjIyAgIyMKICAjIyMjIAogIyMgICMjCiAjIyAgIyMKICAjIyMjIAo=";
+    private static final String _9 = "ICAjIyMjIAogIyMgICMjCiAjIyAgIyMKICAjIyMjIwogICAgICMjCiAgICAjIyAKICAjIyMgIAo=";
+    private static final String _0 = "ICAjIyMjIAogIyMgICMjCiAjIyAjIyMKICMjIyMjIwogIyMjICMjCiAjIyAgIyMKICAjIyMjIAo=";
+    
     public static String[] getDecodeAAs(String text) {
         String[] aas = new String[text.length()];
         for (int i = 0; i < aas.length; i++) {
@@ -47,10 +76,69 @@ public class AAs {
     }
 
     public static String getAA(char ch) {
+
+        switch (ch) {
+            case '1':
+                return _1;
+            case '2':
+                return _2;
+            case '3':
+                return _3;
+            case '4':
+                return _4;
+            case '5':
+                return _5;
+            case '6':
+                return _6;
+            case '7':
+                return _7;
+            case '8':
+                return _8;
+            case '9':
+                return _9;
+            case '0':
+                return _0;
+        }
+
         switch (ch) {
             case ' ':
                 return SPACE;
+            case '!':
+                return EXCLAMATION;
+            case '?':
+                return QUESTION;
+            case '-':
+                return HYPHEN;
+            case ',':
+                return COMMA;
+            case '.':
+                return FULL_STOP;
+            case '"':
+                return QUOTATION;
+            case '#':
+                return NUMBER_SIGN;
+            case '%':
+                return PERCENT;
+            case '+':
+                return PLUS;
+            case '/':
+                return SOLIDUS;
+            case '&':
+                return AMPERSAND;
+            case '\'':
+                return APOSTROPHE;
+            case ':':
+                return COLON;
+            case ';':
+                return SEMICOLON;
+            case '=':
+                return EQUALS;
+            case '_':
+                return LOW_LINE;
+            case '^':
+                return CIRCUMFLEX;
         }
+
         ch = Character.toUpperCase(ch);
         switch (ch) {
             case 'A':
