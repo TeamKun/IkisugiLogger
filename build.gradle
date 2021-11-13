@@ -1,8 +1,10 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 group 'net.kunmc.lab'
+archivesBaseName = "ikisugi-logger"
 version '1.0'
 
 repositories {
@@ -16,4 +18,57 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'ikisugi-logger'
+            from components.java
+            pom {
+                name = 'IkisugiLogger'
+                description = 'The "Ikisugi" Log library'
+                url = 'https://github.com/TeamKun/IkisugiLogger'
+                licenses {
+                    license {
+                        name = 'GNU Lesser General Public License v3.0'
+                        url = 'https://www.gnu.org/licenses/lgpl-3.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'MORIMORI0317'
+                        name = 'MORIMORI0317'
+                    }
+                }
+                scm {
+                    connection = 'git@github.com:TeamKun/IkisugiLogger.git'
+                    developerConnection = 'git@github.com:TeamKun/IkisugiLogger.git'
+                    url = 'https://github.com/TeamKun/IkisugiLogger'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url "https://maven.felnull.dev/"
+            credentials {
+                username = "felnull"
+                password = System.getenv('mavenpassword')
+            }
+        }
+    }
+}
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+    options.charSet = 'UTF-8'
+    options.encoding = 'UTF-8'
 }

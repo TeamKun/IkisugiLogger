@@ -60,7 +60,7 @@ public class AAs {
     private static final String _8 = "ICAjIyMjIAogIyMgICMjCiAjIyAgIyMKICAjIyMjIAogIyMgICMjCiAjIyAgIyMKICAjIyMjIAo=";
     private static final String _9 = "ICAjIyMjIAogIyMgICMjCiAjIyAgIyMKICAjIyMjIwogICAgICMjCiAgICAjIyAKICAjIyMgIAo=";
     private static final String _0 = "ICAjIyMjIAogIyMgICMjCiAjIyAjIyMKICMjIyMjIwogIyMjICMjCiAjIyAgIyMKICAjIyMjIAo=";
-    
+
     public static String[] getDecodeAAs(String text) {
         String[] aas = new String[text.length()];
         for (int i = 0; i < aas.length; i++) {
@@ -194,6 +194,6 @@ public class AAs {
             case 'Z':
                 return Z;
         }
-        throw new IllegalStateException("No support char");
+        throw new IllegalStateException("No support char :" + ch);
     }
 }

@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The "IKISUGI LOGGER"
+ *
+ * @author MORIMORI0317
+ * @since 1.0
+ */
 public class IkisugiLogger {
     private static final Random random = new Random();
     private final String text;
@@ -11,6 +17,11 @@ public class IkisugiLogger {
     private int blankCount = 0;
     private boolean center;
 
+    /**
+     * イキスギたログ
+     *
+     * @param text ログの文字
+     */
     public IkisugiLogger(String text) {
         this.text = text;
     }
@@ -19,6 +30,11 @@ public class IkisugiLogger {
         return center;
     }
 
+    /**
+     * 中央よせにするかどうか
+     *
+     * @param center 中央よせ
+     */
     public void setCenter(boolean center) {
         this.center = center;
     }
@@ -31,6 +47,11 @@ public class IkisugiLogger {
         this.blankCount = blankCount;
     }
 
+    /**
+     * Logを生成する
+     *
+     * @return log
+     */
     public String create() {
         String[] texts = text.split("\n");
         String[][] aas = new String[texts.length][];
@@ -112,6 +133,22 @@ public class IkisugiLogger {
         return sb.toString();
     }
 
+    /**
+     * カラータイプを指定デフォルトだとNONE
+     * <p>
+     * NONE<br>
+     * <img alt="NONE" src="https://cdn.discordapp.com/attachments/358878159615164416/909114953951223878/2021-11-14_01h18_04.png"><br>
+     * <br>
+     * RANDOM<br>
+     * <img alt="RAANDOM" src="https://cdn.discordapp.com/attachments/358878159615164416/909115268792475728/2021-11-14_01h19_19.png"><br>
+     * <br>
+     * RAINBOW<br>
+     * <img alt="RAINBOW" src="https://cdn.discordapp.com/attachments/358878159615164416/909115605192409128/2021-11-14_01h20_39.png"><br>
+     * <br>
+     * </p>
+     *
+     * @param colorType カラータイプ
+     */
     public void setColorType(ColorType colorType) {
         this.colorType = colorType;
     }
