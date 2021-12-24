@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'net.kunmc.lab:ikisugi-logger:1.1'
+    implementation 'net.kunmc.lab:ikisugi-logger:1.2'
 }
 ```
 
@@ -34,7 +34,7 @@ Maven
         <dependency>
             <groupId>net.kunmc.lab</groupId>
             <artifactId>ikisugi-logger</artifactId>
-            <version>1.1</version>
+            <version>1.2</version>
         </dependency>
     </dependencies>
 ```
