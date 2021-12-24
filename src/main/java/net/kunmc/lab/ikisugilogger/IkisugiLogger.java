@@ -47,6 +47,7 @@ public class IkisugiLogger {
         this.blankCount = blankCount;
     }
 
+
     /**
      * Logを生成する
      *
@@ -170,7 +171,23 @@ public class IkisugiLogger {
             int cl = Util.convertHSBtoRGB((float) (line + column) / 2, 1, 1);
             int[] rgb = Util.toRGB(cl);
             return String.format("\u001b[38;2;%s;%s;%sm", rgb[0], rgb[1], rgb[2]) + n;
+        }), CHRISTMAS((n, m, l, o, p) -> {
+            double line = (double) m / o;
+            double column = (double) l / p;
+            double val = (line + column) / 2d;
+            int cl = val < 0.4 ? 0x114514 : val < 0.9 ? 0x810000 : 0x364364;
+            if (random.nextInt(6) == 0)
+                cl = random.nextInt(0xFFFFFF);
+
+            if (line == 0) {
+                if (random.nextInt(3) != 0)
+                    cl = 0x8b4513;
+            }
+
+            int[] rgb = Util.toRGB(cl);
+            return String.format("\u001b[38;2;%s;%s;%sm", rgb[0], rgb[1], rgb[2]) + n;
         });
+
         private final Colorable colorable;
 
         private ColorType(Colorable colorable) {
