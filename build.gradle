@@ -5,7 +5,7 @@ plugins {
 
 group 'net.kunmc.lab'
 archivesBaseName = "ikisugi-logger"
-version '1.2'
+version '1.3'
 
 repositories {
     mavenCentral()

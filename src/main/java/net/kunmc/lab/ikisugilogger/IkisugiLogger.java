@@ -1,8 +1,10 @@
 package net.kunmc.lab.ikisugilogger;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * The "IKISUGI LOGGER"
@@ -11,6 +13,7 @@ import java.util.Random;
  * @since 1.0
  */
 public class IkisugiLogger {
+    private static final String vowels = "aiueon";
     private static final Random random = new Random();
     private final String text;
     private ColorType colorType = ColorType.NONE;
@@ -117,7 +120,7 @@ public class IkisugiLogger {
             for (String aa : aalt) {
                 String[] let = aa.split("\n");
                 String line = let.length > ct ? let[ct] : Util.stringRepeat(" ", let[let.length - 1].length());
-                sb.append(colorType.getColorable().colorLine(line, act, colinCont, maxLine, maxColin));
+                sb.append(colorType.getColorable().colorLine(line, act, colinCont, maxLine, maxColin, texts, center, blankCount));
                 colinCont += line.length();
                 sb.append(Util.stringRepeat(" ", blankCount));
                 colinCont += blankCount;
@@ -132,6 +135,10 @@ public class IkisugiLogger {
             sb.append("\u001b[0m");
 
         return sb.toString();
+    }
+
+    public String createLn() {
+        return "\n" + create();
     }
 
     /**
@@ -160,18 +167,18 @@ public class IkisugiLogger {
 
     //https://note.affi-sapo-sv.com/nodejs-console-color-output.php#title5
     public static enum ColorType {
-        NONE((n, m, l, o, p) -> String.valueOf(n)),
-        RANDOM((n, m, l, o, p) -> {
+        NONE((n, m, l, o, p, text, center, blankCount) -> String.valueOf(n)),
+        RANDOM((n, m, l, o, p, text, center, blankCount) -> {
             int[] rgb = Util.toRGB(random.nextInt(0xFFFFFF));
             return String.format("\u001b[38;2;%s;%s;%sm", rgb[0], rgb[1], rgb[2]) + n;
         }),
-        RAINBOW((n, m, l, o, p) -> {
+        RAINBOW((n, m, l, o, p, text, center, blankCount) -> {
             double line = (double) m / o;
             double column = (double) l / p;
             int cl = Util.convertHSBtoRGB((float) (line + column) / 2, 1, 1);
             int[] rgb = Util.toRGB(cl);
             return String.format("\u001b[38;2;%s;%s;%sm", rgb[0], rgb[1], rgb[2]) + n;
-        }), CHRISTMAS((n, m, l, o, p) -> {
+        }), CHRISTMAS((n, m, l, o, p, text, center, blankCount) -> {
             double line = (double) m / o;
             double column = (double) l / p;
             double val = (line + column) / 2d;
@@ -186,6 +193,29 @@ public class IkisugiLogger {
 
             int[] rgb = Util.toRGB(cl);
             return String.format("\u001b[38;2;%s;%s;%sm", rgb[0], rgb[1], rgb[2]) + n;
+        }), VOWEL_ONLY(new Colorable() {
+            @Override
+            public String color(char c, int line, int column, int maxLine, int maxColumn, String[] text, boolean center, int blankCount) {
+                boolean rb;
+                List<Integer> ls = Arrays.stream(text).map(AAUtils::getMaxHeight).collect(Collectors.toList());
+                int le = 0;
+                int cl = 0;
+                for (int i = 0; i < ls.size(); i++) {
+                    int l = ls.get(i) + 1;
+                    cl += l;
+                    if (cl > line) {
+                        le = i;
+                        break;
+                    }
+                }
+                int z = (maxColumn - AAUtils.getAllWidth(text[le], blankCount)) / 2;
+                char ch = AAUtils.getAAbyColumn(text[le], column, blankCount, z);
+                rb = vowels.contains(String.valueOf(Character.toLowerCase(ch)));
+                if (rb)
+                    return RAINBOW.colorable.color(c, line, column, maxLine, maxColumn, text, center, blankCount);
+                int[] rgb = Util.toRGB(0xa9a9a9);
+                return String.format("\u001b[38;2;%s;%s;%sm", rgb[0], rgb[1], rgb[2]) + c;
+            }
         });
 
         private final Colorable colorable;
@@ -200,13 +230,13 @@ public class IkisugiLogger {
     }
 
     private static interface Colorable {
-        String color(char c, int line, int column, int maxLine, int maxColumn);
+        String color(char c, int line, int column, int maxLine, int maxColumn, String[] text, boolean center, int blankCount);
 
-        default String colorLine(String text, int line, int column, int maxLine, int maxColumn) {
+        default String colorLine(String text, int line, int column, int maxLine, int maxColumn, String[] tx, boolean center, int blankCount) {
             StringBuilder sb = new StringBuilder();
             char[] chars = text.toCharArray();
             for (int i = 0; i < chars.length; i++) {
-                sb.append(color(chars[i], line, column + i, maxLine, maxColumn));
+                sb.append(color(chars[i], line, column + i, maxLine, maxColumn, tx, center, blankCount));
             }
             return sb.toString();
         }

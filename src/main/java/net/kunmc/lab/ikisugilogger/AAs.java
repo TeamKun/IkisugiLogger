@@ -61,6 +61,20 @@ public class AAs {
     private static final String _9 = "ICAjIyMjIAogIyMgICMjCiAjIyAgIyMKICAjIyMjIwogICAgICMjCiAgICAjIyAKICAjIyMgIAo=";
     private static final String _0 = "ICAjIyMjIAogIyMgICMjCiAjIyAjIyMKICMjIyMjIwogIyMjICMjCiAjIyAgIyMKICAjIyMjIAo=";
 
+    public static int getWidth(char ch) {
+        int mx = 0;
+        String[] spr = getDecodeAA(ch).split("\n");
+        for (String s : spr) {
+            if (s.length() > mx)
+                mx = s.length();
+        }
+        return mx;
+    }
+
+    public static int getHeight(char ch) {
+        return getDecodeAA(ch).split("\n").length;
+    }
+
     public static String[] getDecodeAAs(String text) {
         String[] aas = new String[text.length()];
         for (int i = 0; i < aas.length; i++) {
